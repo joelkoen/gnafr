@@ -34,7 +34,6 @@ async fn locate(path: web::Path<(f64, f64)>, pool: web::Data<SqlitePool>) -> Res
                 continue;
             }
         }
-        dbg!(&choices);
 
         let mut best = choices.get(0).unwrap();
         let mut best_distance = haversine_distance(lat, lon, best.latitude, best.longitude);
@@ -74,6 +73,13 @@ async fn id(path: web::Path<String>, pool: web::Data<SqlitePool>) -> Result<Http
     }
 }
 
+#[get("/")]
+async fn copyright() -> HttpResponse {
+    HttpResponse::Ok().body(
+        "Licensed by Geoscape Australia under the Open G-NAF Core End User Licence Agreement.",
+    )
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     let pool = SqlitePool::connect("../gnafr-db/gnafr.db")
@@ -85,6 +91,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(pool.clone()))
             .service(locate)
             .service(id)
+            .service(copyright)
     })
     .bind(("127.0.0.1", 8000))?
     .run()
