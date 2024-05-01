@@ -1,0 +1,140 @@
+{
+  "db_name": "SQLite",
+  "query": "select * from address where latitude between ? and ? and longitude between ? and ?",
+  "describe": {
+    "columns": [
+      {
+        "name": "id",
+        "ordinal": 0,
+        "type_info": "Text"
+      },
+      {
+        "name": "display",
+        "ordinal": 1,
+        "type_info": "Text"
+      },
+      {
+        "name": "site_name",
+        "ordinal": 2,
+        "type_info": "Text"
+      },
+      {
+        "name": "building_name",
+        "ordinal": 3,
+        "type_info": "Text"
+      },
+      {
+        "name": "flat_type",
+        "ordinal": 4,
+        "type_info": "Text"
+      },
+      {
+        "name": "flat_number",
+        "ordinal": 5,
+        "type_info": "Text"
+      },
+      {
+        "name": "level_type",
+        "ordinal": 6,
+        "type_info": "Text"
+      },
+      {
+        "name": "level_number",
+        "ordinal": 7,
+        "type_info": "Text"
+      },
+      {
+        "name": "number_first",
+        "ordinal": 8,
+        "type_info": "Text"
+      },
+      {
+        "name": "number_last",
+        "ordinal": 9,
+        "type_info": "Text"
+      },
+      {
+        "name": "lot_number",
+        "ordinal": 10,
+        "type_info": "Text"
+      },
+      {
+        "name": "street_name",
+        "ordinal": 11,
+        "type_info": "Text"
+      },
+      {
+        "name": "street_type",
+        "ordinal": 12,
+        "type_info": "Text"
+      },
+      {
+        "name": "street_suffix",
+        "ordinal": 13,
+        "type_info": "Text"
+      },
+      {
+        "name": "locality",
+        "ordinal": 14,
+        "type_info": "Text"
+      },
+      {
+        "name": "state",
+        "ordinal": 15,
+        "type_info": "Text"
+      },
+      {
+        "name": "postcode",
+        "ordinal": 16,
+        "type_info": "Text"
+      },
+      {
+        "name": "alias_of",
+        "ordinal": 17,
+        "type_info": "Text"
+      },
+      {
+        "name": "child_of",
+        "ordinal": 18,
+        "type_info": "Text"
+      },
+      {
+        "name": "latitude",
+        "ordinal": 19,
+        "type_info": "Float"
+      },
+      {
+        "name": "longitude",
+        "ordinal": 20,
+        "type_info": "Float"
+      }
+    ],
+    "parameters": {
+      "Right": 4
+    },
+    "nullable": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      true,
+      true,
+      false,
+      false,
+      false,
+      true,
+      true,
+      false,
+      false
+    ]
+  },
+  "hash": "9b02be50a4e56bfa06c158f40f059f20a578d02753480f43be5ddbff99baf121"
+}

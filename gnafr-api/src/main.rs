@@ -1,8 +1,19 @@
+use std::path::PathBuf;
+
 use actix_web::{error, get, web, App, HttpResponse, HttpServer, Result};
+use clap::Parser;
 use serde::Serialize;
 use sqlx::{query_as, SqlitePool};
 
 pub const RANGE: f64 = 0.0001;
+
+#[derive(Debug, Parser)]
+struct Args {
+    #[arg(short, long)]
+    database_path: Option<String>,
+    #[arg(short, long)]
+    port: Option<u16>,
+}
 
 #[get("/{lat}/{lon}")]
 async fn locate(path: web::Path<(f64, f64)>, pool: web::Data<SqlitePool>) -> Result<HttpResponse> {
@@ -82,10 +93,18 @@ async fn copyright() -> HttpResponse {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    let pool = SqlitePool::connect("../gnafr-db/gnafr.db")
-        .await
-        .expect("failed to open db");
+    let args = Args::parse();
 
+    let pool = SqlitePool::connect(
+        args.database_path
+            .as_deref()
+            .unwrap_or("../gnafr-db/gnafr.db"),
+    )
+    .await
+    .expect("failed to open db");
+
+    let port = args.port.unwrap_or(8000);
+    eprintln!("Starting on 127.0.0.1:{port}");
     HttpServer::new(move || {
         App::new()
             .app_data(web::Data::new(pool.clone()))
@@ -93,7 +112,7 @@ async fn main() -> std::io::Result<()> {
             .service(id)
             .service(copyright)
     })
-    .bind(("127.0.0.1", 8000))?
+    .bind(("127.0.0.1", port))?
     .run()
     .await
 }

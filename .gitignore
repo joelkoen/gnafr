@@ -1,7 +1,3 @@
 target
 *.db
-
-
-# Added by cargo
-
-/target
+result
