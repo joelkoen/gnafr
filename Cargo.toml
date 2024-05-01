@@ -1,0 +1,9 @@
+[package]
+name = "gnafr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.82"
+rusqlite = { version = "0.31.0", features = ["bundled"] }
+zstd = "0.13.1"
