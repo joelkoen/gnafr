@@ -1,14 +1,13 @@
 use std::{
-    collections::HashMap,
-    fs::{self, remove_file, File},
+    fs::{remove_file, File},
     io::{BufRead, BufReader},
     path::Path,
 };
 
-use anyhow::{bail, Result};
+use anyhow::Result;
 use rusqlite::{params, Connection};
 
-fn main() -> Result<()> {
+pub fn main() -> Result<()> {
     let reader = BufReader::new(zstd::Decoder::new(File::open(
         "../postcodes/gnaf-core.psv.zst",
     )?)?);
